@@ -86,7 +86,8 @@ namespace Blogifier.Core.Extensions
                 new CultureInfo("pt-BR"),
                 new CultureInfo("ru-RU"),
                 new CultureInfo("zh-cn"),
-                new CultureInfo("zh-tw")
+                new CultureInfo("zh-tw"),
+                new CultureInfo("nb-NO")
             };
 
             services.AddJsonLocalization(options => {

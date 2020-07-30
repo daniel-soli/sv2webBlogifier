@@ -13,6 +13,10 @@
     <PackageReference Include="Markdig" Version="0.20.0" />
     <PackageReference Include="Microsoft.FeatureManagement" Version="2.0.0" />
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Sotsera.Blazor.Toaster" Version="3.0.0" />
     <PackageReference Include="Askmethat.Aspnet.JsonLocalizer" Version="2.2.0" />
   </ItemGroup>

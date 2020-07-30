@@ -7,17 +7,11 @@
 <div class="form-login">
     @if (!User.Identity.IsAuthenticated)
     {
-        <form asp-route-returnurl="@HttpContext.Request.Query["ReturnUrl"]" class="form" method="POST">
+        
             <div class="bf-account-header">
-                <h1>Register</h1>
-                <p>You can register or go <a href="~/">back to blog</a>.</p>
+                <h1><a href="~/">Tilbake til blogg</a></h1>
             </div>
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <input asp-for="UserName" class="form-control form-control form-control-top" placeholder="Username" autofocus>
-            <input asp-for="Password" class="form-control form-control form-control-bottom" placeholder="Password">
-            <input asp-for="ConfirmPassword" class="form-control form-control form-control-bottom" placeholder="Confirm">
-            <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
-        </form>
+            
     }
     else
     {

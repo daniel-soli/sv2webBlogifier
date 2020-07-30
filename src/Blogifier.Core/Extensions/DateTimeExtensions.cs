@@ -24,11 +24,11 @@ namespace Blogifier.Core
             string FormattedDate = "";
             if (date.Date == DateTime.Today)
             {
-                FormattedDate = "Today";
+                FormattedDate = "Idag";
             }
             else if (date.Date == DateTime.Today.AddDays(-1))
             {
-                FormattedDate = "Yesterday";
+                FormattedDate = "Igår";
             }
             else if (date.Date > DateTime.Today.AddDays(-6))
             {
