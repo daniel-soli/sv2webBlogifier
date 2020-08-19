@@ -2,6 +2,7 @@
     PostModel postModel = (PostModel)Model;
     string cover = $"{Url.Content("~/")}{postModel.Post.Cover}";
     var catUrl = Url.Content("~/categories");
+    var cookieValue = Context.Request.Cookies["VisitorId"];
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +71,31 @@
             </div>
         </section>
     </article>
-
+    <form id="StatsForm" method="post" name="StatsForm"> 
+        <input hidden type="text" id="GUID" name="GUID" value="@cookieValue"/>
+        <input hidden type="number" id="postId" name="postId" value="@postModel.Post.Id" />
+    </form>
     <partial name="~/Views/Themes/Standard/Shared/Footer.cshtml" />
+    <script>
+    var cookie = $("#GUID").val();
+    var postId = $("#postId").val();
+
+    $('#StatsForm').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/UpdateStats',
+            type: 'post',
+            data: {
+                localGuid: cookie,
+                postId: postId
+            },
+            dataType: "json",
+            success: function () {
+                // 
+            }
+        });
+    });
+    $('#StatsForm').submit();
+    </script>
 </body>
 </html>

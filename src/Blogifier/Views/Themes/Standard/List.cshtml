@@ -6,6 +6,7 @@
     Pager pgr = listModel.Pager;
     string root = Url.Content("~/");
     string cover = $"{root}{listModel.Blog.Cover}";
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,6 @@
 </head>
 <body class="home">
     <partial name="~/Views/Themes/Standard/Shared/Header.cshtml" model="listModel.Blog.SocialFields" />
-
     <div class="page-cover" style="background-image: url('@cover')">
         <h1 class="page-cover-title">
             <a href="~/blog">@listModel.Blog.Title</a>
@@ -43,11 +43,11 @@
                         <div class="post-meta">
                             <a class="post-meta-author">@post.Author.DisplayName</a>
                             <time class="post-meta-time">/ @post.Published.ToFriendlyDateString()</time> /
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> @post.PostViews</span> /
-                            <span>
-                                <i class="fa fa-comments-o" aria-hidden="true"></i>
-                                <a href="posts/@post.Slug#disqus_thread"></a>
-                            </span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> @post.PostViews</span> 
+                                @*<span>
+                                    <i class="fa fa-comments-o" aria-hidden="true"></i>
+                                    <a href="posts/@post.Slug#disqus_thread"></a>
+                                </span>*@
                         </div>
                         <div class="post-description">@Html.Raw(post.Description)</div>
                         <a class="post-more btn btn-rounded btn-dark" href="posts/@post.Slug">@Localizer["read"]</a>

@@ -33,7 +33,8 @@ namespace Blogifier.Controllers
         }
 
         public async Task<IActionResult> Index(string term, int page = 1)
-        {               
+        {
+            
             var blog = await DataService.CustomFields.GetBlogSettings();
             var model = new ListModel { 
                 Blog = blog, 
@@ -119,6 +120,29 @@ namespace Blogifier.Controllers
             {
                 return Redirect("~/error");
             }
+        }
+        [HttpPost("UpdateStats")]
+        public IActionResult UpdateStats(Guid localGuid, int postId)
+        {
+            if (localGuid != Guid.Empty)
+            {
+                try
+                {
+                    var existing = DataService.StatsUniqueRepository.Single(s => s.PostId == postId && s.Guid == localGuid && s.DateCreated == SystemClock.Now().Date);
+                    
+                    if (existing == null)
+                    {
+                        DataService.StatsUniqueRepository.Add(new StatsUnique { PostId = postId, DateCreated = SystemClock.Now().Date, Guid = localGuid });
+                        
+                        DataService.Complete();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Ok(ex.Message);
+                }
+            }
+            return Ok();
         }
 
         [ResponseCache(Duration = 1200)]

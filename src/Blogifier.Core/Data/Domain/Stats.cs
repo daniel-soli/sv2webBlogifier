@@ -11,4 +11,13 @@ namespace Blogifier.Core.Data
         [Column(TypeName = "date")]
         public DateTime DateCreated { get; set; }
     }
+
+    public class StatsUnique
+    {
+        public int Id { get; set; }
+        public int PostId { get; set; }
+        public Guid Guid { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime DateCreated { get; set; }
+    }
 }

@@ -16,6 +16,7 @@ namespace Blogifier.Core.Data
         public DbSet<HtmlWidget> HtmlWidgets { get; set; }
         public DbSet<Newsletter> Newsletters { get; set; }
         public DbSet<StatsTotal> StatsTotals { get; set; }
+        public DbSet<StatsUnique> StatsUniques { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

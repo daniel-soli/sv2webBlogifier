@@ -1,47 +1,57 @@
-﻿<header class="blog-header d-flex flex-column">
-    <div class="container d-flex">
-        <a href="~/blog" class="blog-logo my-auto d-flex">
-            <img src="~/data/Daniel/2020/7/sv2web2fav.png" alt="Sv2Web Blogg" class="my-auto" />
+﻿<nav class="navbar navbar-expand-lg navbar-dark blog-header">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand d-none d-sm-block" href="~/blog">
+            <img src="~/data/Daniel/2020/7/sv2web2fav.png" alt="Sv2Web Blogg" width="30" height="30" />
         </a>
-        <ul class="blog-social nav ml-auto my-auto">
-            <li class="blog-social-item">
-                <a class="blog-social-link" target="" href="~/">
-                    Hovedside
-                </a>
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" target="" href="~/">Hovedside <span class="sr-only">(current)</span></a>
             </li>
-            <li class="blog-social-item">
-                <a class="blog-social-link" target="" href="~/blog">
-                    Blogg
-                </a>
+            <li class="nav-item active">
+                <a class="nav-link" href="~/blog">Blogg</a>
             </li>
         </ul>
-        <ul class="blog-social nav ml-auto my-auto">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             @foreach (var field in Model)
             {
-                <li class="blog-social-item">
-                    <a class="blog-social-link" target="_blank" href="@field.Content">
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="@field.Content">
                         <i class="blog-social-icon fa @field.Icon"></i>
                     </a>
                 </li>
             }
-            @*<li class="blog-social-item">
-                <a class="blog-social-link" target="_blank" href="feed/rss">
-                    <i class="blog-social-icon fa fa-rss"></i>
+            <li class="nav-item">
+                <a href="" class="nav-link" data-toggle="modal" data-target="#blog-search">
+                    <i class="blog-social-icon fa fa-search"></i>
                 </a>
-            </li>*@
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/admin">
+                    <i class="blog-social-icon fa fa-user" aria-hidden="true"></i>
+                </a>
+            </li>
+            @*<li class="blog-social-item">
+            <a class="blog-social-link" target="_blank" href="feed/rss">
+                <i class="blog-social-icon fa fa-rss"></i>
+            </a>
+        </li>*@
         </ul>
-        <button class="blog-search-toggle btn-unstyled" type="button" data-toggle="modal" data-target="#blog-search">
+        @*<button class="blog-search-toggle btn-unstyled" type="button" data-toggle="modal" data-target="#blog-search">
             <i class="fa fa-search"></i>
-        </button>
-        <ul class="blog-social nav my-auto nav-login">
+        </button>*@
+        @*<ul class="blog-social nav my-auto nav-login">
             <li class="blog-social-item">
                 <a class="blog-social-link" href="~/admin">
                     <i class="fa fa-user" aria-hidden="true"></i>
                 </a>
             </li>
-        </ul>
+        </ul>*@
     </div>
-</header>
+</nav>
+
 @{
     AppSettings.SiteRoot = Url.Content("~/");
 }

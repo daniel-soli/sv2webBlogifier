@@ -1,6 +1,7 @@
 ﻿using Blogifier.Core.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
@@ -165,9 +166,10 @@ namespace Blogifier.Core.Data
             item.Author.Avatar = string.IsNullOrEmpty(item.Author.Avatar) ? Constants.DefaultAvatar : item.Author.Avatar;
             item.Author.Email = sanitize ? Constants.DummyEmail : item.Author.Email;
 
-            post.PostViews++;
+            //post.PostViews++;
             await _db.SaveChangesAsync();
             await SaveStatsTotals(post.Id);
+            await SaveStatsUnique(post.Id);
 
             return await Task.FromResult(item);
         }
@@ -204,9 +206,10 @@ namespace Blogifier.Core.Data
             }
 
             var post = _db.BlogPosts.Single(p => p.Slug == slug);
-            post.PostViews++;
+            //post.PostViews++;
             await _db.SaveChangesAsync();
             await SaveStatsTotals(post.Id);
+            await SaveStatsUnique(post.Id);
 
             return await Task.FromResult(model);
         }
@@ -393,6 +396,27 @@ namespace Blogifier.Core.Data
                 await _db.SaveChangesAsync();
             }
             catch { }
+        }
+
+        async Task SaveStatsUnique(int postId)
+        {
+            try
+            {
+                var post = _db.BlogPosts.Single(p => p.Id == postId);
+                int totalNow = post.PostViews;
+
+                int unique = _db.StatsUniques.Where(u => u.PostId == postId).Count();
+
+                if (totalNow <= unique)
+                {
+                    post.PostViews = unique;
+                }
+                await _db.SaveChangesAsync();
+            }
+            catch
+            {
+
+            }
         }
     }
 

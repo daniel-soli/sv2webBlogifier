@@ -11,6 +11,7 @@ using Microsoft.FeatureManagement;
 using Serilog;
 using Serilog.Events;
 using Sotsera.Blazor.Toaster.Core.Models;
+using Blazored.LocalStorage;
 
 namespace Blogifier
 {
@@ -45,8 +46,6 @@ namespace Blogifier
             ).AddRazorRuntimeCompilation().AddViewLocalization();
 
             services.AddServerSideBlazor();
-
-            //services.AddHttpContextAccessor();
             
             services.AddToaster(config =>
             {
@@ -56,6 +55,7 @@ namespace Blogifier
             });
 
             services.AddBlogServices();
+            services.AddBlazoredLocalStorage();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -97,6 +97,7 @@ namespace Blogifier
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/Admin/_Host");
             });
+            app.UseMiddleware(typeof(VisitorCounterMiddleware));
         }
     }
 }

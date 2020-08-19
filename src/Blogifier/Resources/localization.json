@@ -667,6 +667,16 @@
       "nb-NO": "Oversikt"
     }
   },
+  "statistics": {
+    "Values": {
+      "en-US": "Statistics",
+      "ru-RU": "Статистика",
+      "zh-cn": "統計",
+      "zh-tw": "统计",
+      "pt-BR": "Estatisticas",
+      "nb-NO": "Statistikk"
+    }
+  },
   "popular": {
     "Values": {
       "en-US": "Popular",

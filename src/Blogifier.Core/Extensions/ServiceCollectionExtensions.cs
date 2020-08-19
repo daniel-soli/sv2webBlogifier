@@ -1,5 +1,6 @@
 ﻿using Askmethat.Aspnet.JsonLocalizer.Extensions;
 using Blogifier.Core.Data;
+using Blogifier.Core.Data.Repositories;
 using Blogifier.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -132,6 +133,7 @@ namespace Blogifier.Core.Extensions
             services.AddScoped<ICustomFieldRepository, CustomFieldRepository>();
             services.AddScoped<ICustomFieldRepository, CustomFieldRepository>();
             services.AddScoped<IStatsRepository, StatsRepository>();
+            services.AddScoped<IStatsUniqueRepository, StatsUniqueRepository>();
         }
     }
 }

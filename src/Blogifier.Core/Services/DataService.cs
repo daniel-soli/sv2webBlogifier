@@ -1,4 +1,5 @@
 ﻿using Blogifier.Core.Data;
+using Blogifier.Core.Data.Repositories;
 using System;
 
 namespace Blogifier.Core.Services
@@ -12,6 +13,7 @@ namespace Blogifier.Core.Services
         ICustomFieldRepository CustomFields { get; }
         INewsletterRepository Newsletters { get; }
         IStatsRepository StatsRepository { get; }
+        IStatsUniqueRepository StatsUniqueRepository { get; }
 
         int Complete();
     }
@@ -28,7 +30,8 @@ namespace Blogifier.Core.Services
             IHtmlWidgetRepository htmlWidgetRepository,
             ICustomFieldRepository customFieldRepository,
             INewsletterRepository newsletterRepository,
-            IStatsRepository statsRepository)
+            IStatsRepository statsRepository,
+            IStatsUniqueRepository statsUniqueRepository)
         {
             _db = db;
 
@@ -39,6 +42,7 @@ namespace Blogifier.Core.Services
             CustomFields = customFieldRepository;
             Newsletters = newsletterRepository;
             StatsRepository = statsRepository;
+            StatsUniqueRepository = statsUniqueRepository;
         }
 
         public IPostRepository BlogPosts { get; private set; }
@@ -48,6 +52,7 @@ namespace Blogifier.Core.Services
         public ICustomFieldRepository CustomFields { get; private set; }
         public INewsletterRepository Newsletters { get; private set; }
         public IStatsRepository StatsRepository { get; private set; }
+        public IStatsUniqueRepository StatsUniqueRepository { get; private set; }
 
         public int Complete()
         {
