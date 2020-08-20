@@ -6,3 +6,5 @@ My personal website with the use of Blogifier (https://github.com/blogifierdotne
   Need to add a new table with Id (autoincrement), PostId (int), Guid (varchar), DateCreated (date) for use. 
 * Added docker support
 * Changes to Standard View theme for responsive Nav menu.
+* New Statistics Blazor Component with new Statistic Admin page
+
