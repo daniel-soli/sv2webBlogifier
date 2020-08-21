@@ -241,3 +241,4 @@ build/tools
 build/publish
 src/Blogifier/wwwroot/data/Daniel/
 src/Blogifier/wwwroot/data/Admin/2020/7/daniel1.jpg
+src/Blogifier/appsettings.json
