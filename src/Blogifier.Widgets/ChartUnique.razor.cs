@@ -1,4 +1,5 @@
-﻿using Blogifier.Core.Data;
+﻿using Askmethat.Aspnet.JsonLocalizer.Localizer;
+using Blogifier.Core.Data;
 using Blogifier.Core.Helpers;
 using Blogifier.Core.Services;
 using Microsoft.AspNetCore.Components;
@@ -15,6 +16,8 @@ namespace Blogifier.Widgets
         protected IDataService DataService { get; set; }
         protected string[] Labels { get; set; }
         protected double[] Values { get; set; }
+        [Inject]
+        IJsonStringLocalizer<StatsUnique> Localizer { get; set; }
 
         protected List<ChartOptionUnique> ChartOptionUnique = new List<ChartOptionUnique>() {
             new ChartOptionUnique { Id = ChartSelectorUnique.Week, Label = "Last week" },

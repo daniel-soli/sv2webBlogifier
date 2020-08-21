@@ -684,7 +684,7 @@
       "zh-cn": "热门",
       "zh-tw": "熱門",
       "pt-BR": "Popular",
-      "nb-NO": "Populær"
+      "nb-NO": "Populære"
     }
   },
   "empty": {
@@ -1080,6 +1080,26 @@
       "zh-cn": "上个月",
       "zh-tw": "上個月",
       "nb-NO": "Forrige måned"
+    }
+  },
+  "unique-hits": {
+    "Values": {
+      "en-US": "Unique hits",
+      "ru-RU": "",
+      "pt-BR": "",
+      "zh-cn": "",
+      "zh-tw": "",
+      "nb-NO": "Unike treff"
+    }
+  },
+  "hits": {
+    "Values": {
+      "en-US": "Hits",
+      "ru-RU": "",
+      "pt-BR": "",
+      "zh-cn": "",
+      "zh-tw": "",
+      "nb-NO": "Treff"
     }
   }
 }

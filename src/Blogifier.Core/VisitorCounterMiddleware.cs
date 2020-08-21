@@ -21,8 +21,8 @@ namespace Blogifier.Core
         {
             string visitorId = context.Request.Cookies["VisitorId"];
             string visitorIdCreated = context.Request.Cookies["VisitorIdCreated"];
-
-            DateTime VisitorIdCreatedDT = DateTime.Parse(visitorIdCreated);
+            //DateTime VisitorIdCreatedDT = DateTime.Parse(visitorIdCreated);
+            
             if (visitorId == null)
             {
                 //don the necessary staffs here to save the count by one
@@ -39,7 +39,7 @@ namespace Blogifier.Core
                     Secure = false,
                 });
             }
-            else if (visitorId != null && (DateTime.Now - VisitorIdCreatedDT).TotalDays > 2)
+            else if (visitorId != null && visitorIdCreated != null && (DateTime.Now - DateTime.Parse(visitorIdCreated)).TotalDays > 2)
             {
                 context.Response.Cookies.Delete("VisitorIdCreated");
                 context.Response.Cookies.Delete("VisitorId");

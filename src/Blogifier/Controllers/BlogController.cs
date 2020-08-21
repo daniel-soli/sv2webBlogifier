@@ -113,7 +113,7 @@ namespace Blogifier.Controllers
                 model.Blog = await DataService.CustomFields.GetBlogSettings();
                 model.Post.Description = model.Post.Description.MdToHtml();
                 model.Post.Content = model.Post.Content.MdToHtml();
-
+                
                 return View($"~/Views/Themes/{model.Blog.Theme}/Post.cshtml", model);
             }
             catch
@@ -133,7 +133,9 @@ namespace Blogifier.Controllers
                     if (existing == null)
                     {
                         DataService.StatsUniqueRepository.Add(new StatsUnique { PostId = postId, DateCreated = SystemClock.Now().Date, Guid = localGuid });
-                        
+                        var post = DataService.BlogPosts.Single(b => b.Id == postId);
+                        post.PostViews += 1;
+
                         DataService.Complete();
                     }
                 }

@@ -1,4 +1,5 @@
-﻿<div class="card">
+﻿@inject IJSRuntime JSRuntime
+<div class="card">
     <div class="card-header">@Localizer["popular"]</div>
     <div class="card-body">
         <ul class="bf-list bf-posts-list d-block" aria-label="featured">
@@ -6,10 +7,11 @@
             {
                 <li class="bf-list-item d-flex align-items-center">
                     @{
-                        string title = post.Title.Length < 60 ? post.Title : post.Title.Substring(0, 57) + "...";
+                        string title = post.Title.Length < 35 ? post.Title : post.Title.Substring(0, 32) + "...";
                     }
-                    <a class="bf-list-item-link" href="" @onclick="@(() => EditPost(post.Id))" @onclick:preventDefault>@title</a>
-                    <span class="badge badge-primary badge-pill">@post.PostViews</span>
+                    <a class="bf-list-item-link" href="" @onclick="@(() => EditPost(post.Id))" @onclick:preventDefault data-toggle="tooltip" data-placement="right" title="@post.Title">@title</a>
+                    
+                    <span class="badge badge-info badge-pill">@post.PostViews</span>
                 </li>
             }
         </ul>
@@ -19,4 +21,14 @@
 @if (Edit)
 {
     <PostEditor PostId="@PostId" HideCallback="HideEditor" />
+}
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeAsync<string>("commonJsFunctions.setTooltip", "");
+        }
+    }
 }

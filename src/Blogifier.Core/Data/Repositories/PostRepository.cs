@@ -169,7 +169,7 @@ namespace Blogifier.Core.Data
             //post.PostViews++;
             await _db.SaveChangesAsync();
             await SaveStatsTotals(post.Id);
-            await SaveStatsUnique(post.Id);
+            //await SaveStatsUnique(post.Id);
 
             return await Task.FromResult(item);
         }
@@ -209,7 +209,7 @@ namespace Blogifier.Core.Data
             //post.PostViews++;
             await _db.SaveChangesAsync();
             await SaveStatsTotals(post.Id);
-            await SaveStatsUnique(post.Id);
+            // await SaveStatsUnique(post.Id);
 
             return await Task.FromResult(model);
         }
@@ -404,7 +404,7 @@ namespace Blogifier.Core.Data
             {
                 var post = _db.BlogPosts.Single(p => p.Id == postId);
                 int totalNow = post.PostViews;
-
+                
                 int unique = _db.StatsUniques.Where(u => u.PostId == postId).Count();
 
                 if (totalNow <= unique)
