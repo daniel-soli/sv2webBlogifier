@@ -36,9 +36,11 @@ namespace Blogifier.Controllers
         {
             
             var blog = await DataService.CustomFields.GetBlogSettings();
+            var cat = await DataService.BlogPosts.Categories();
             var model = new ListModel { 
                 Blog = blog, 
-                PostListType = PostListType.Blog 
+                PostListType = PostListType.Blog,
+                Categories = cat
             };
             var pgr = new Pager(page, blog.ItemsPerPage);
 
@@ -73,14 +75,16 @@ namespace Blogifier.Controllers
         public async Task<IActionResult> Categories(string name, int page = 1)
         {
             var blog = await DataService.CustomFields.GetBlogSettings();
+            var cat = await DataService.BlogPosts.Categories();
             var model = new ListModel
             {
                 Blog = blog,
-                PostListType = PostListType.Category
+                PostListType = PostListType.Category,
+                Categories = cat
             };
             var pgr = new Pager(page, blog.ItemsPerPage);
 
-            model.Posts = await DataService.BlogPosts.GetList(p => p.Categories.Contains(name), pgr);
+            model.Posts = await DataService.BlogPosts.GetList(p => p.Categories.ToLower().Contains(name), pgr);
 
             if (pgr.ShowOlder) pgr.LinkToOlder = $"?page={pgr.Older}";
             if (pgr.ShowNewer) pgr.LinkToNewer = $"?page={pgr.Newer}";
@@ -111,6 +115,7 @@ namespace Blogifier.Controllers
                 }
 
                 model.Blog = await DataService.CustomFields.GetBlogSettings();
+                model.Categories = await DataService.BlogPosts.Categories();
                 model.Post.Description = model.Post.Description.MdToHtml();
                 model.Post.Content = model.Post.Content.MdToHtml();
                 
