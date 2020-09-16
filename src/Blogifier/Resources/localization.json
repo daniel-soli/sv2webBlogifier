@@ -164,6 +164,17 @@
       "nb-NO": "Beskrivelse"
     }
   },
+  "extra-description": {
+    "Values": {
+      "en-US": "Extra Description",
+      "es-ES": "Extra Descripción",
+      "ru-RU": "Описание",
+      "zh-cn": "描述",
+      "zh-tw": "敘述",
+      "pt-BR": "Extra Descrição",
+      "nb-NO": "Ekstra beskrivelse"
+    }
+  },
   "items-per-page": {
     "Values": {
       "en-US": "Items per page",
@@ -654,7 +665,7 @@
       "zh-cn": "联系",
       "zh-tw": "聯系",
       "pt-BR": "Contato",
-      "nb-NO": "Kontakter"
+      "nb-NO": "Kontakt"
     }
   },
   "dashboard": {
@@ -1100,6 +1111,16 @@
       "zh-cn": "",
       "zh-tw": "",
       "nb-NO": "Treff"
+    }
+  },
+  "written-by": {
+    "Values": {
+      "en-US": "Written by",
+      "ru-RU": "",
+      "pt-BR": "",
+      "zh-cn": "",
+      "zh-tw": "",
+      "nb-NO": "Skrevet av"
     }
   }
 }
