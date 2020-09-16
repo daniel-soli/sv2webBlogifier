@@ -130,7 +130,7 @@
             e.stopPropagation();
         });
             
-        searchField.attr({placeholder: 'Type Keywords', autocomplete: 'off'});
+        searchField.attr({placeholder: 'Tast søkeord', autocomplete: 'off'});
     
     };
 
