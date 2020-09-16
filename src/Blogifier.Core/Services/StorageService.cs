@@ -269,8 +269,9 @@ namespace Blogifier.Core.Services
 
                 if (await _featureManager.IsEnabledAsync(nameof(AppFeatureFlags.GenerateThumbs)))
                 {
-                    Stream stream = file.OpenReadStream();
+                    var stream = file.OpenReadStream();
                     SaveThumbnail(stream, thumbFolder, fileName);
+                    SaveLargeThumbnail(stream, thumbFolder, fileName);
                 }
 
                 return new AssetItem
@@ -371,10 +372,103 @@ namespace Blogifier.Core.Services
 
                 if (!Directory.Exists(thumbFolder))
                     Directory.CreateDirectory(thumbFolder);
+                if ((image.Width / image.Height) > 2)
+                {
+                    Rectangle cropRect = new Rectangle(0, 0, AppSettings.ThumbWidth, AppSettings.ThumbHeight);
+                    Bitmap src = Image.FromStream(resourceImage) as Bitmap;
+                    if (src.Width > AppSettings.ThumbWidth)
+                    {
+                        double aspect = (double)src.Height / (double)AppSettings.ThumbHeight;
+                        double aspectWidth = AppSettings.ThumbWidth * aspect;
+                        int newWidth = Convert.ToInt32(aspectWidth);
+                        Image temp = src.GetThumbnailImage(newWidth, AppSettings.ThumbHeight, () => false, IntPtr.Zero);
+                        Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+                        using (Graphics g = Graphics.FromImage(target))
+                        {
+                            g.DrawImage(temp, new Rectangle(0, 0, target.Width, target.Height),
+                                             cropRect,
+                                             GraphicsUnit.Pixel);
 
-                Image thumb = image.GetThumbnailImage(AppSettings.ThumbWidth, AppSettings.ThumbHeight, () => false, IntPtr.Zero);
-                thumb.Save(Path.Combine(thumbFolder, fileName));
+                            target.Save(Path.Combine(thumbFolder, fileName));
+                        }
+                    }
+                    else
+                    {
+                        Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+                        using (Graphics g = Graphics.FromImage(target))
+                        {
+                            g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
+                                             cropRect,
+                                             GraphicsUnit.Pixel);
+
+                            target.Save(Path.Combine(thumbFolder, fileName));
+                        }
+                    }
+                }
+                else
+                {
+                    Image thumb = image.GetThumbnailImage(AppSettings.ThumbWidth, AppSettings.ThumbHeight, () => false, IntPtr.Zero);
+                    thumb.Save(Path.Combine(thumbFolder, fileName));
+                }
+                
                 return true;    
+            }
+            catch { return false; }
+        }
+
+        public bool SaveLargeThumbnail(Stream resourceImage, string thumbFolder, string fileName)
+        {
+            try
+            {
+                Image image = Image.FromStream(resourceImage);
+
+                if (image.Width <= AppSettings.ThumbWidthLarge)
+                    return false;
+
+                if (!Directory.Exists(thumbFolder))
+                    Directory.CreateDirectory(thumbFolder);
+                if ((image.Width / image.Height) < 1.7m)
+                {
+                    Rectangle cropRect = new Rectangle(0, 0, AppSettings.ThumbWidthLarge, AppSettings.ThumbHeightLarge);
+                    Bitmap src = Image.FromStream(resourceImage) as Bitmap;
+                    if (src.Width > AppSettings.ThumbWidthLarge)
+                    {
+                        double aspect = (double)src.Width / (double)src.Height;
+                        double aspectHeigth = AppSettings.ThumbHeightLarge * aspect;
+                        int newHeigth = Convert.ToInt32(aspectHeigth);
+
+                        Image temp = src.GetThumbnailImage(AppSettings.ThumbWidthLarge, newHeigth, () => false, IntPtr.Zero);
+                        Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+                        using (Graphics g = Graphics.FromImage(target))
+                        {
+                            g.DrawImage(temp, new Rectangle(0, 0, target.Width, target.Height),
+                                             cropRect,
+                                             GraphicsUnit.Pixel);
+
+                            target.Save(Path.Combine(thumbFolder, "large_" + fileName));
+                        }
+                    }
+                    else
+                    {
+                        Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+                        using (Graphics g = Graphics.FromImage(target))
+                        {
+                            g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
+                                             cropRect,
+                                             GraphicsUnit.Pixel);
+
+                            target.Save(Path.Combine(thumbFolder, "large_" + fileName));
+                        }
+                    }
+                }
+                else
+                {
+                    Image thumbLarge = image.GetThumbnailImage(AppSettings.ThumbWidthLarge, AppSettings.ThumbHeightLarge, () => false, IntPtr.Zero);
+                    thumbLarge.Save(Path.Combine(thumbFolder, "large_" + fileName));
+                }
+                
+
+                return true;
             }
             catch { return false; }
         }

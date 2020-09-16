@@ -18,7 +18,9 @@ namespace Blogifier.Core
         public static string ContentRootPath { get; set; }
 
         public static int ThumbWidth { get; set; } = 432;
+        public static int ThumbWidthLarge { get; set; } = 730;
         public static int ThumbHeight { get; set; } = 200;
+        public static int ThumbHeightLarge { get; set; } = 322;
 
         public static Action<DbContextOptionsBuilder> DbOptions { get; set; }
 

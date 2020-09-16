@@ -72,6 +72,16 @@ namespace Blogifier.Core
             return $"{first}/thumbs{second}";
         }
 
+        public static string ToThumbLarge(this string img)
+        {
+            if (img.IndexOf('/') < 1) return img;
+
+            var first = img.Substring(0, img.LastIndexOf('/'));
+            var second = img.Substring(img.LastIndexOf('/')+1);
+
+            return $"{first}/thumbs/large_{second}";
+        }
+
         public static string Capitalize(this string str)
         {
             if (string.IsNullOrEmpty(str))

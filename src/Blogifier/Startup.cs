@@ -71,8 +71,10 @@ namespace Blogifier
 
             AppSettings.WebRootPath = env.WebRootPath;
             AppSettings.ContentRootPath = env.ContentRootPath;
-            AppSettings.ThumbWidth = 270;
-            AppSettings.ThumbHeight = 180;
+            AppSettings.ThumbWidth = 350;
+            AppSettings.ThumbHeight = 233;
+            AppSettings.ThumbWidthLarge = 730;
+            AppSettings.ThumbHeightLarge = 322;
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
