@@ -46,6 +46,8 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="wwwroot\data\Daniel\2020\9\thumbs\" />
+    <Folder Include="wwwroot\themes\sv2blog\css\" />
   </ItemGroup>
 
 </Project>

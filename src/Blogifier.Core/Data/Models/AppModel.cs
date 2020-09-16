@@ -20,6 +20,9 @@ namespace Blogifier.Core.Data
         [Required]
         [StringLength(255)]
         public string Description { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string About { get; set; }
         [Display(Name = "Items per page")]
         public int ItemsPerPage { get; set; }
         [StringLength(160)]

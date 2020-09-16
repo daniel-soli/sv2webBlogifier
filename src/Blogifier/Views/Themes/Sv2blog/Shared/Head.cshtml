@@ -1,0 +1,21 @@
+﻿<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Merriweather:700" rel="stylesheet">
+<environment include="Development">
+    <!-- Bootstrap core CSS -->
+    <link href="~/themes/sv2blog/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    @*<link href="~/themes/sv2blog/css/prism.css" rel="stylesheet">*@
+    <link href="~/themes/sv2blog/css/main.css" rel="stylesheet" asp-append-version="true">
+</environment>
+<environment exclude="Development">
+    <!-- Bootstrap core CSS -->
+    <link href="~/themes/sv2blog/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+    <!-- Sv2 Blog Stylesheet -->
+    <link href="~/themes/sv2blog/css/main.css" rel="stylesheet">
+</environment>
+<link rel="shortcut icon" href="~/themes/sv2blog/img/favicon.ico">
+@*<link href="~/themes/sv2blog/css/bootstrap.min.css" rel="stylesheet">*@
+<partial name="~/Views/Shared/HeaderScript.cshtml" />

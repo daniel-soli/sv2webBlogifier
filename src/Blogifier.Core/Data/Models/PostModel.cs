@@ -12,6 +12,7 @@ namespace Blogifier.Core.Data
         public PostItem Post { get; set; }
         public PostItem Older { get; set; }
         public PostItem Newer { get; set; }
+        public IEnumerable<CategoryItem> Categories { get; set; }
     }
 
     public class ListModel
@@ -19,6 +20,7 @@ namespace Blogifier.Core.Data
         public BlogItem Blog { get; set; }
         public Author Author { get; set; } // posts by author
         public string Category { get; set; } // posts by category
+        public IEnumerable<CategoryItem> Categories { get; set; }
 
         public IEnumerable<PostItem> Posts { get; set; }
         public Pager Pager { get; set; }

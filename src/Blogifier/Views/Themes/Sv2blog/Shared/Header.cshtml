@@ -1,0 +1,75 @@
+﻿<!-- Navigation -->
+<header>
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar white">
+        <div class="container-fluid align-items-center">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-sv2" aria-controls="navbar-sv2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-sv2">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item ml-4 mb-0">
+                        <a class="nav-link dark-grey-text font-weight-bold" href="~/">
+                            Hovedside
+                        </a>
+                    </li>
+                    <li class="nav-item ml-4 mb-0">
+                        <a class="nav-link dark-grey-text font-weight-bold" href="~/blog">
+                            Blogg
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <ul class="navbar-nav ml-auto nav-flex-icons nav-social-icons">
+                @foreach (var field in Model)
+                {
+                    @if (field.Icon == "fa-facebook")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="@field.Content">
+                                <i class="fab @field.Icon-f"></i>
+                            </a>
+                        </li>
+                    }
+                    else if (field.Icon == "fa-linkedin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="@field.Content">
+                                <i class="fab @field.Icon-in"></i>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="@field.Content">
+                                <i class="fab @field.Icon"></i>
+                            </a>
+                        </li>
+                    }
+                }
+                <li class="nav-item">
+                    <a href="" class="nav-link" data-toggle="modal" data-target="#blog-search">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/admin">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    <!-- /.Navbar -->
+</header>
+<!-- /.Navigation -->
+
+@{
+    AppSettings.SiteRoot = Url.Content("~/");
+}

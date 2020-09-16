@@ -1,0 +1,141 @@
+﻿@{
+    PostModel postModel = (PostModel)Model;
+    string cover = $"{Url.Content("~/")}{postModel.Post.Cover}";
+    var catUrl = Url.Content("~/categories");
+    var cookieValue = Context.Request.Cookies["VisitorId"];
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta property="og:url" content="https://www.sv2web.no/posts/@postModel.Post.Slug" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@postModel.Post.Title" />
+    <meta property="og:description" content="@postModel.Post.Description" />
+    <meta property="og:image" content="https://www.sv2web.no/@postModel.Post.Cover.ToThumb()" />
+    <partial name="~/Views/Themes/Sv2blog/Shared/Head.cshtml" />
+</head>
+<body class="postpage-v2 hidden-sn animated">
+    <partial name="~/Views/Themes/Sv2blog/Shared/Header.cshtml" model="postModel.Blog.SocialFields" />
+
+    <!--Main layout-->
+    <!--Intro-->
+    <section>
+        <div class="container-fluid">
+
+            <!--Excerpt-->
+            <br>
+            <h1 class="text-center dark-grey-text pb-3 mt-5 pt-5">
+                <strong>@postModel.Blog.Title</strong>
+            </h1>
+
+            <p class="grey-text text-center mb-4 text-uppercase spacing">@postModel.Blog.Description </p>
+
+            <!--Grid row-->
+            @*<div class="row flex-center">*@
+
+            <!--Grid column-->
+            @*<div class="col-md-10 col-xl-5">
+
+                    <p class="grey-text text-center">
+                        <em>
+
+                        </em>
+                    </p>
+
+                </div>*@
+            <!--Grid column-->
+            @*  </div>*@
+            <!--Grid row-->
+        </div>
+    </section>
+    <!--/Intro-->
+    <!--Blog section-->
+    <section>
+        <div class="container-fluid">
+            <hr class="my-5">
+            <div class="container">
+
+                <!-- Cover photo -->
+                <div class="row mb-2 mt-1">
+
+                    <div class="col-md-12">
+
+                        <!--Image-->
+                        <div class="view post-img-desktop-div">
+                            <img src="@cover" class="img-fluid z-depth-1 wow fadeIn post-img-desktop-size" data-wow-delay="0.2s">
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/ Cover photo -->
+                <!--Blog-->
+                <div class="row mt-4 pt-3">
+
+                    <!--Main listing-->
+                    <div class="col-lg-9 col-12 mt-1">
+
+                        <!--Section: Blog v.3-->
+                        <section class="extra-margins pb-5 text-lg-left">
+
+                            <!--Grid row-->
+                            <div class="row mb-4">
+
+                                <!--Grid column-->
+                                <div class="col-md-12 post-image">
+
+                                    <!--Title-->
+                                    <h4 class="font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                                        <strong>@postModel.Post.Title</strong>
+                                    </h4>
+                                    <hr>
+                                    @Html.Raw(postModel.Post.Content)
+
+                                    <hr>
+
+                                    <!--Grid row-->
+                                    <div class="row mb-4 wow fadeIn" data-wow-delay="0.2s">
+
+                                        <!--Grid column-->
+                                        <div class="col-md-12 text-center">
+
+                                            <h4 class="text-center font-weight-bold dark-grey-text mt-3 mb-3">
+                                                <strong>Del dette innlegget: </strong>
+                                            </h4>
+
+                                            <a type="button" class="btn btn-fb btn-sm"
+                                               target="_blank"
+                                                 href="https://www.facebook.com/sharer/sharer.php?u=https://www.sv2web.no/blog/@postModel.Post.Slug"
+                                                 data-layout="button_count">
+                                                <i class="fab fa-facebook-f left"></i> Facebook
+                                            </a>
+                                            <hr class="mt-5">
+                                        </div>
+                                        <!--Grid column-->
+
+                                    </div>
+                                    <!--Grid row-->
+
+                                </div>
+                                <!--Grid column-->
+
+                            </div>
+                            <!--/Grid row-->
+
+                        </section>
+                        <!--Section: Blog v.3-->
+
+                    </div>
+                    <!--Main listing-->
+                    <!-- SIDEBAR -->
+                    <partial name="~/Views/Themes/Sv2blog/Shared/Sidebar.cshtml" model="postModel.Categories" />
+                    <!-- /Blog -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <partial name="~/Views/Themes/Sv2blog/Shared/Footer.cshtml" model="postModel.Blog" />
+</body>
