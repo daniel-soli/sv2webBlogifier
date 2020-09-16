@@ -12,6 +12,7 @@
         // blog settings in custom fields
         public static string BlogTitle = "blog-title";
         public static string BlogDescription = "blog-description";
+        public static string BlogAbout = "blog-about";
         public static string BlogItemsPerPage = "blog-items-per-page";
         public static string BlogTheme = "blog-theme";
         public static string BlogLogo = "blog-logo";
