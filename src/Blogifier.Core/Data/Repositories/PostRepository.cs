@@ -292,7 +292,7 @@ namespace Blogifier.Core.Data
                     }
                 }
             }
-            return await Task.FromResult(cats.OrderBy(c => c));
+            return await Task.FromResult(cats.OrderByDescending(c => c.PostCount).Take(10).OrderBy(c => c.Category));
         }
 
         async Task<PostItem> PostToItem(BlogPost p, bool sanitize = false)
