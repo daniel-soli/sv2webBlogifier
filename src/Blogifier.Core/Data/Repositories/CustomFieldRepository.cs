@@ -54,10 +54,11 @@ namespace Blogifier.Core.Data
 		public async Task<BlogItem> GetBlogSettings()
 		{
 			var blog = new BlogItem();
-			CustomField title, desc, items, cover, logo, theme, culture, includefeatured, headerscript, footerscript;
+			CustomField title, desc, about, items, cover, logo, theme, culture, includefeatured, headerscript, footerscript;
 
 			title = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogTitle).FirstOrDefault();
 			desc = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogDescription).FirstOrDefault();
+			about = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogAbout).FirstOrDefault();
 			items = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogItemsPerPage).FirstOrDefault();
 			cover = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogCover).FirstOrDefault();
 			logo = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogLogo).FirstOrDefault();
@@ -68,6 +69,7 @@ namespace Blogifier.Core.Data
 			footerscript = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.FooterScript).FirstOrDefault();
 
 			blog.Title = title == null ? "Blog Title" : title.Content;
+			blog.About = about == null ? "Blog About" : about.Content;
 			blog.Description = desc == null ? "Short blog description" : desc.Content;
 			blog.ItemsPerPage = items == null ? 10 : int.Parse(items.Content);
 			blog.Cover = cover == null ? "data/Daniel/2020/7/nordlys.jpg" : cover.Content;
@@ -86,6 +88,7 @@ namespace Blogifier.Core.Data
 		{
 			var title = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogTitle).FirstOrDefault();
 			var desc = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogDescription).FirstOrDefault();
+			var about = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogAbout).FirstOrDefault();
 			var items = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogItemsPerPage).FirstOrDefault();
 			var cover = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogCover).FirstOrDefault();
 			var logo = _db.CustomFields.Where(f => f.AuthorId == 0 && f.Name == Constants.BlogLogo).FirstOrDefault();
@@ -100,6 +103,9 @@ namespace Blogifier.Core.Data
 
 			if (desc == null) _db.CustomFields.Add(new CustomField { AuthorId = 0, Name = Constants.BlogDescription, Content = blog.Description });
 			else desc.Content = blog.Description;
+
+			if (about == null) _db.CustomFields.Add(new CustomField { AuthorId = 0, Name = Constants.BlogAbout, Content = blog.About });
+			else about.Content = blog.About;
 
 			if (items == null) _db.CustomFields.Add(new CustomField { AuthorId = 0, Name = Constants.BlogItemsPerPage, Content = blog.ItemsPerPage.ToString() });
 			else items.Content = blog.ItemsPerPage.ToString();
