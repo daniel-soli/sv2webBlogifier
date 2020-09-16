@@ -37,7 +37,7 @@ namespace Blogifier.Core
             }
             else
             {
-                FormattedDate = date.ToString("MMMM dd, yyyy");
+                FormattedDate = date.ToString("dd. MMMM, yyyy");
             }
             return FormattedDate;
         }
