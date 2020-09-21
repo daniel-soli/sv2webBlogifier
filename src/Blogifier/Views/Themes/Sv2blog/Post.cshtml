@@ -74,7 +74,6 @@
                 <!--/ Cover photo -->
                 <!--Blog-->
                 <div class="row mt-4 pt-3">
-
                     <!--Main listing-->
                     <div class="col-lg-9 col-12 mt-1">
 
@@ -108,8 +107,8 @@
 
                                             <a type="button" class="btn btn-fb btn-sm"
                                                target="_blank"
-                                                 href="https://www.facebook.com/sharer/sharer.php?u=https://www.sv2web.no/blog/@postModel.Post.Slug"
-                                                 data-layout="button_count">
+                                               href="https://www.facebook.com/sharer/sharer.php?u=https://www.sv2web.no/blog/@postModel.Post.Slug"
+                                               data-layout="button_count">
                                                 <i class="fab fa-facebook-f left"></i> Facebook
                                             </a>
                                             <hr class="mt-5">
@@ -137,5 +136,31 @@
             </div>
         </div>
     </section>
+    <form id="StatsForm" method="post" name="StatsForm">
+        <input hidden type="text" id="GUID" name="GUID" value="@cookieValue" />
+        <input hidden type="number" id="postId" name="postId" value="@postModel.Post.Id" />
+    </form>
     <partial name="~/Views/Themes/Sv2blog/Shared/Footer.cshtml" model="postModel.Blog" />
+    <script>
+        var cookie = $("#GUID").val();
+        var postId = $("#postId").val();
+
+        $('#StatsForm').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/UpdateStats',
+                type: 'post',
+                data: {
+                    localGuid: cookie,
+                    postId: postId
+                },
+                dataType: "json",
+                success: function () {
+                    //
+                }
+            });
+        });
+        $('#StatsForm').submit();
+    </script>
 </body>
+</html>

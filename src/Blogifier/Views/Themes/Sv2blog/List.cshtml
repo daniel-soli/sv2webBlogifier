@@ -91,7 +91,7 @@
                                                         {
                                                             <span class="post-featrued-label"><i class="fa fa-star"></i>@Localizer["featured"]</span>
                                                         }
-                                                        <a href="posts/@post.Slug">
+                                                        <a href="~/posts/@post.Slug">
                                                             <div class="mask rgba-white-slight"></div>
                                                         </a>
                                                     </div>
@@ -100,25 +100,18 @@
                                                     <div class="card-body mx-4">
                                                         <!--Title-->
                                                         <h4 class="card-title">
-                                                            <strong><a href="posts/@post.Slug">@post.Title</a> </strong>
+                                                            <strong><a href="~/posts/@post.Slug">@post.Title</a> </strong>
                                                         </h4>
                                                         <em class="written-by">
-                                                            @Localizer["written-by"] @post.Author.DisplayName
+                                                            @Localizer["written-by"] @post.Author.DisplayName, @post.Published.ToFriendlyDateString()
                                                         </em>
                                                         <hr>
                                                         <!--Text-->
                                                         <p class="dark-grey-text mb-3">
                                                             @Html.Raw(post.Description)
                                                         </p>
-                                                        <p></p>
-                                                        <p class="font-small font-weight-bold blue-grey-text mb-1">
-                                                            <i class="far fa-clock"></i> @post.Published.ToFriendlyDateString()
-                                                            <span class="float-right">
-                                                                <i class="far fa-eye" aria-hidden="true"></i> @post.PostViews
-                                                            </span>
-                                                        </p>
                                                         <p class="text-right mb-0 text-uppercase dark-grey-text font-weight-bold">
-                                                            <a href="posts/@post.Slug" style="color:white" class="btn btn-dark float-left">@Localizer["read"]...</a>
+                                                            <a href="~/posts/@post.Slug" style="color:white" class="btn btn-dark float-left">@Localizer["read"]...</a>
                                                         </p>
                                                     </div>
                                                     <!--/.Card content-->
@@ -145,7 +138,7 @@
 
                                                 <!--Card image-->
                                                 <div class="view overlay list-img-desktop-div-small">
-                                                    <a href="posts/@post.Slug">
+                                                    <a href="~/posts/@post.Slug">
                                                         <img src="~/@post.Cover.ToThumb()" onerror="this.onerror=null;this.src='@root@post.Cover';" class="card-img-top list-img-desktop-size-small" alt="@post.Title">
                                                         @if (post.Featured)
                                                         {
@@ -159,26 +152,19 @@
                                                 <!--Card content-->
                                                 <div class="card-body mx-4">
                                                     <!--Title-->
-                                                    <h4 class="card-title">
-                                                        <strong><a href="posts/@post.Slug">@post.Title</a> </strong>
-                                                    </h4>
+                                                    <h6 class="card-title">
+                                                        <strong><a href="~/posts/@post.Slug">@post.Title</a> </strong>
+                                                    </h6>
                                                     <em class="written-by">
-                                                        @Localizer["written-by"] @post.Author.DisplayName
+                                                        @Localizer["written-by"] @post.Author.DisplayName, @post.Published.ToFriendlyDateString()
                                                     </em>
                                                     <hr>
                                                     <!--Text-->
                                                     <p class="dark-grey-text mb-3">
                                                         @Html.Raw(post.Description)
                                                     </p>
-                                                    <p></p>
-                                                    <p class="font-small font-weight-bold blue-grey-text mb-1">
-                                                        <i class="far fa-clock"></i> @post.Published.ToFriendlyDateString()
-                                                        <span class="float-right">
-                                                            <i class="far fa-eye" aria-hidden="true"></i> @post.PostViews
-                                                        </span>
-                                                    </p>
                                                     <p class="text-right mb-0 text-uppercase dark-grey-text font-weight-bold">
-                                                        <a href="posts/@post.Slug" style="color:white" class="btn btn-dark float-left">@Localizer["read"]...</a>
+                                                        <a href="~/posts/@post.Slug" style="color:white" class="btn btn-dark float-left">@Localizer["read"]...</a>
                                                     </p>
                                                 </div>
                                                 <!--/.Card content-->
@@ -207,9 +193,9 @@
                                 <ul class="pagination pg-darkgrey flex-center">
                                     <!--Arrow left-->
                                     <li class="page-item">
-                                        <a class="page-link" aria-label="Previous">
+                                        <a class="page-link" aria-label="Forrige">
                                             <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Previous</span>
+                                            <span class="sr-only">Forrige</span>
                                         </a>
                                     </li>
 
@@ -232,9 +218,9 @@
 
                                     <!--Arrow right-->
                                     <li class="page-item">
-                                        <a class="page-link" aria-label="Next">
+                                        <a class="page-link" aria-label="Neste">
                                             <span aria-hidden="true">»</span>
-                                            <span class="sr-only">Next</span>
+                                            <span class="sr-only">Neste</span>
                                         </a>
                                     </li>
                                 </ul>

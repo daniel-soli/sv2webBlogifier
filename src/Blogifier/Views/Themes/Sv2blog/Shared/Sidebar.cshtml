@@ -1,5 +1,8 @@
 ﻿@using Askmethat.Aspnet.JsonLocalizer.Localizer
 @inject IJsonStringLocalizer<ListModel> Localizer
+@{ 
+    
+}
 <div class="col-lg-3 col-12 mt-1">
 
     <!-- Section: Categories -->
@@ -16,8 +19,17 @@
                 <ul class="list-group my-4">
                     @foreach (var cat in Model)
                     {
+                        string link;
+                        if (cat.Category == "c#")
+                        {
+                            link = "c%23";
+                        }
+                        else
+                        {
+                            link = cat.Category;
+                        }
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a class="" href="~/categories/@cat.Category">
+                            <a class="" href="~/categories/@link">
                                 <p class="mb-0">@cat.Category</p>
                             </a>
                             <span class="badge teal badge-pill font-small">@cat.PostCount</span>
