@@ -37,7 +37,8 @@ namespace Blogifier
 
         public async Task<IActionResult> OnPostAsync([FromQuery]string returnUrl = null)
         {
-            if(DataService.Authors.All().Count() > 0)
+            
+            if (DataService.Authors.All().Count() > 0)
             {
                 // only if we want single user for a personal blog
                 ModelState.AddModelError(string.Empty, "Application user already created");

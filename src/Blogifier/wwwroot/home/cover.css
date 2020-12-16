@@ -28,7 +28,7 @@ html,
 body {
   height: 100%;
   background-color: #666;
-  background-image: url('/home/img/nordlys.jpg');
+  background-image: url('/home/img/background.jpg');
   background-size: cover;
 }
 
